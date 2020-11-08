@@ -24,11 +24,6 @@ export default {
       title: "Image",
       options: { hotspot: true },
     },
-    {
-      name: "cta",
-      type: "cta",
-      title: "Call to action",
-    },
   ],
   preview: {
     select: {

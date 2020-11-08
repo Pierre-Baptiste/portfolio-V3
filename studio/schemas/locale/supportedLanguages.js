@@ -1,4 +1,4 @@
 export default [
   { id: "en", title: "English", isDefault: true },
-  { id: "nb", title: "Norwegian" },
+  { id: "fr", title: "French" },
 ];

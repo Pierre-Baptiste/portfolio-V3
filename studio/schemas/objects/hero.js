@@ -21,17 +21,6 @@ export default {
         hotspot: true,
       },
     },
-    {
-      name: "ctas",
-      type: "array",
-      title: "Call to actions",
-      of: [
-        {
-          title: "Call to action",
-          type: "cta",
-        },
-      ],
-    },
   ],
   preview: {
     select: {
