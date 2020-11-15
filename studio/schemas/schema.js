@@ -4,7 +4,12 @@ import createSchema from "part:@sanity/base/schema-creator";
 import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // We import object and document schemas
-import product from "./documents/product";
+import project from "./documents/project";
+import about from "./documents/about";
+import gallery from "./documents/gallery";
+import work from "./documents/work";
+import education from "./documents/education";
+import skill from "./documents/skill";
 
 // Object types
 import blockContent from "./objects/blockContent";
@@ -12,7 +17,6 @@ import figure from "./objects/figure";
 import link from "./objects/link";
 import portableText from "./objects/portableText";
 import simplePortableText from "./objects/simplePortableText";
-import contactInfo from "./objects/contactInfo";
 
 // Landing page sections
 import hero from "./objects/hero";
@@ -32,7 +36,12 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
-    product,
+    project,
+    about,
+    gallery,
+    work,
+    education,
+    skill,
     // When added to this list, object types can be used as
     figure,
     link,
@@ -41,7 +50,6 @@ export default createSchema({
     textSection,
     portableText,
     simplePortableText,
-    contactInfo,
     blockContent,
     localeText,
     localeBlockContent,
