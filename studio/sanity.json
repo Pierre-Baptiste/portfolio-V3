@@ -5,16 +5,14 @@
     "dataset": "production"
   },
   "project": {
-    "name": "review-changes-launch-demo",
+    "name": "Portfolio",
     "basePath": "/studio"
   },
   "plugins": [
     "@sanity/base",
     "@sanity/components",
     "@sanity/default-layout",
-    "@sanity/default-login",
-    "@sanity/desk-tool",
-    "@sanity/color-input"
+    "@sanity/default-login"
   ],
   "env": {
     "development": {
