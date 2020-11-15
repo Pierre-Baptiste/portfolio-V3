@@ -1,3 +1,7 @@
+import React from "react";
+
+const highlightIcon = () => <span style={{ color: "blue" }}>H</span>;
+
 /**
  * This is the schema definition for the rich text fields used for
  * for this blog studio. When you import it in schemas.js it can be
@@ -21,7 +25,7 @@ export default {
       // you want and decide how you want to deal with it where you want to
       // use your content.
       styles: [
-        { title: "Normal", value: "normal" },
+        { title: "Paragraph", value: "p" },
         { title: "H1", value: "h1" },
         { title: "H2", value: "h2" },
         { title: "H3", value: "h3" },
@@ -36,6 +40,14 @@ export default {
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
+          { title: "Code", value: "code" },
+          {
+            title: "Highlight",
+            value: "highlight",
+            blockEditor: {
+              icon: highlightIcon,
+            },
+          },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [

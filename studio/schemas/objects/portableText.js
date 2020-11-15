@@ -7,7 +7,7 @@ export default {
     {
       type: "block",
       styles: [
-        { title: "Normal", value: "normal" },
+        { title: "Paragraph", value: "p" },
         { title: "H1", value: "h1" },
         { title: "H2", value: "h2" },
         { title: "H3", value: "h3" },
@@ -19,6 +19,13 @@ export default {
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
           { title: "Code", value: "code" },
+          {
+            title: "Highlight",
+            value: "highlight",
+            blockEditor: {
+              icon: () => "H",
+            },
+          },
         ],
       },
     },
