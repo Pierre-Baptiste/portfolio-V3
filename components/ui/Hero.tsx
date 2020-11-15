@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 
 const Hero = ({ page }) => {
   return (
-    <div className="my-8">
+    <div className="mt-8 mb-16">
       <div className="font-bold text-center text-2xl mb-6">
         <FormattedMessage
           id={`${page}.hero.title`}

@@ -1,8 +1,23 @@
-import { parseISO, format } from "date-fns";
+import { parseISO, format as formatFn } from "date-fns";
+import fr from "date-fns/locale/fr";
 
-const DateFormatter = ({ dateString }) => {
+const locales = { fr };
+
+const DateFormatter = ({
+  dateString,
+  format,
+  locale,
+}: {
+  dateString: string;
+  format: string;
+  locale?: string;
+}) => {
   const date = parseISO(dateString);
-  return <time dateTime={dateString}>{format(date, "yyyy")}</time>;
+  return (
+    <time dateTime={dateString}>
+      {formatFn(date, format, { locale: locales[locale] })}
+    </time>
+  );
 };
 
 export { DateFormatter };

@@ -1,38 +1,27 @@
 import React from "react";
 
 import Head from "next/head";
+import Image from "next/image";
 import { Layout } from "components/core/Layout";
 import { FormattedMessage } from "react-intl";
-/* import Typist from "react-typist"; */
+import Typist from "react-typist";
+import { Facebook, Twitter, Linkedin, GitHub, Mail } from "react-feather";
+import Link from "next/link";
+import "react-typist/dist/Typist.css";
+
 import { useRouter } from "next/router";
 
 const blueDot = <span className="text-action">.</span>;
 
-/* const Animation = (locale) => {
+const Social = ({ renderIcon, href }) => {
   return (
-    <Typist startDelay={1000}>
-      <span>
-        Pierre-Baptiste
-        {blueDot}
-      </span>
-      <Typist.Backspace count={16} delay={1000} />
-      <span>
-        {locale === "fr" ? "ingénieur" : "an engineer"}
-        {blueDot}
-      </span>
-      <Typist.Backspace count={10} delay={1000} />
-      <span>
-        {locale === "fr" ? "développeur" : "a developer"}
-        {blueDot}
-      </span>
-      <Typist.Backspace count={12} delay={1000} />
-      <span>
-        {locale === "fr" ? "passionné" : "passionate"}
-        {blueDot}
-      </span>
-    </Typist>
+    <Link href={href}>
+      <div className="my-4 text-gray-600 hover:scale-150 transform hover:text-action transition-all duration-150 cursor-pointer">
+        {renderIcon(20)}
+      </div>
+    </Link>
   );
-}; */
+};
 
 export default function Home() {
   const router = useRouter();
@@ -46,16 +35,9 @@ export default function Home() {
       </Head>
 
       <main className="absolute right-0 left-0 top-0 min-h-full">
-        <div
-          style={{
-            backgroundImage: "url(/assets/landing/landing.jpg)",
-            maxWidth: "1920px",
-            backgroundPosition: "85% top",
-          }}
-          className="h-screen w-screen bg-cover fixed"
-        >
+        <div className="h-screen w-screen bg-cover bg-paper fixed">
           <Layout>
-            <div className="text-6xl font-extrabold font-sans leading-none mt-48">
+            <div className="xl:text-6xl lg:text-5xl md:text-4xl text-3xl lg:font-extrabold font-bold font-sans leading-none xl:mt-48 lg:mt-32 md:mt-32 sm:mt-24 mt-16 z-50">
               <FormattedMessage
                 id="landing.title.hello"
                 description="landing title element - hello"
@@ -69,10 +51,46 @@ export default function Home() {
                   defaultMessage="I am"
                 />
                 &nbsp;
-                {/* {Animation(locale)} */}
+                <Typist startDelay={500}>
+                  <span>
+                    Pierre-Baptiste
+                    {blueDot}
+                  </span>
+                </Typist>
               </div>
             </div>
           </Layout>
+          <div className="fixed left-0 bottom-0 top-0 right-0 flex justify-start mx-auto max-w-container px-6 pointer-events-none">
+            <div className="flex items-end pointer-events-auto">
+              <div className="flex flex-col">
+                <div className="my-6">
+                  <Social
+                    renderIcon={(size) => <Facebook size={size} />}
+                    href="https://www.facebook.com/pierrebaptiste.dupire"
+                  />
+                  <Social
+                    renderIcon={(size) => <Linkedin size={size} />}
+                    href="https://www.linkedin.com/in/pb-dupire/"
+                  />
+                  <Social
+                    renderIcon={(size) => <Twitter size={size} />}
+                    href="https://twitter.com/PBDupire"
+                  />
+                  <Social
+                    renderIcon={(size) => <GitHub size={size} />}
+                    href="https://github.com/Pierre-Baptiste"
+                  />
+                  <Social
+                    renderIcon={(size) => <Mail size={size} />}
+                    href={"mailto:p.b.dupire@gmail.com"}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="absolute right-0 top-0 z-0 md:mt-32 xl:mr-40 lg:mr-24 md:-mr-8 sm:mr-0 -mr-32 mt-48">
+            <Image src="/bg.png" width={500} height={930} />
+          </div>
         </div>
       </main>
     </>

@@ -1,29 +1,24 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 
 import Head from "next/head";
 import { Layout } from "components/core/Layout";
 import { Hero } from "components/ui/Hero";
-import { FooterCaption } from "components/ui/FooterCaption";
-import { FormattedMessage } from "react-intl";
-import { useRouter } from "next/router";
 import { groq } from "next-sanity";
-import {
-  getClient,
-  usePreviewSubscription,
-  PortableText,
-  urlFor,
-} from "utils/sanity";
+import { getClient } from "utils/sanity";
 import Gallery from "react-photo-gallery";
 import Image from "next/image";
-import Carousel, { Modal, ModalGateway } from "react-images";
+import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
+import "lightgallery.js/dist/css/lightgallery.css";
 
 const query = groq`*[_type == "gallery"] {
   ...,
+	"caption":photo.caption,
+	"alt":photo.alt,
   "photo": photo.asset->{
     url,
     metadata {
       location,
-  		dimensions,
+      dimensions,
       palette {
         dominant {
           background,
@@ -34,74 +29,48 @@ const query = groq`*[_type == "gallery"] {
   }
 }`;
 
-const View = (props) => {
-  const { currentView } = props;
-  const { src, height, width } = currentView;
-
-  return <Image src={src} height={height} width={width} />;
-};
-
 export default function gallery({ photos }) {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [viewerIsOpen, setViewerIsOpen] = useState(false);
-
-  const openLightbox = useCallback((e) => {
-    setCurrentImage(+e.target.dataset.index);
-    setViewerIsOpen(true);
-  }, []);
-
-  const closeLightbox = () => {
-    setCurrentImage(0);
-    setViewerIsOpen(false);
-  };
-
-  const imageRenderer = ({ photo, index, onClick }) => {
-    return (
-      <Image
-        src={photo.src}
-        width={photo.width}
-        height={photo.height}
-        key={photo.src}
-        onClick={openLightbox}
-        data-index={index}
-      />
-    );
-  };
-
   return (
     <>
       <Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="absolute right-0 left-0 top-0 min-h-full">
-        <Layout>
+      <main className="absolute right-0 left-0 top-0 min-h-full ">
+        <Layout size="md">
           <Hero page="gallery" />
-          <div>
-            <Gallery
-              photos={photos}
-              onClick={openLightbox}
-              renderImage={imageRenderer}
-            />
-            <ModalGateway>
-              {viewerIsOpen ? (
-                <Modal onClose={closeLightbox}>
-                  <Carousel
-                    components={{ FooterCaption, View }}
-                    currentIndex={currentImage}
-                    views={photos.map((photo) => {
-                      return {
-                        src: photo.src,
-                        caption: "test",
-                        url: "pbdupire.com",
-                        ...photo,
-                      };
-                    })}
-                  />
-                </Modal>
-              ) : null}
-            </ModalGateway>
+          <div className="mt-12">
+            <LightgalleryProvider
+              lightgallerySettings={{
+                download: false,
+                startClass: "lg-fade",
+                showAfterLoad: false,
+                thumbnail: false,
+              }}
+            >
+              <Gallery
+                photos={photos}
+                renderImage={({ photo, index }) => (
+                  <LightgalleryItem
+                    group="gallery"
+                    src={photo.src}
+                    itemClassName="-my-1"
+                    subHtml={`<a href=${photos[index].captionLink}><h4>${photos[index].caption}</h4></a>`}
+                    key={photo.src}
+                  >
+                    <Image
+                      src={photo.src}
+                      width={photo.width}
+                      height={photo.height}
+                      key={photo.src}
+                      data-index={index}
+                      className="hover:scale-110 cursor-pointer transition-transform duration-200 transform overflow-hidden"
+                      alt={photos[index].alt}
+                    />
+                  </LightgalleryItem>
+                )}
+              />
+            </LightgalleryProvider>
           </div>
         </Layout>
       </main>
@@ -113,12 +82,15 @@ export async function getStaticProps() {
   const photosData = await getClient().fetch(query);
 
   const photos = photosData.reduce((acc, curr) => {
-    const { photo } = curr;
+    const { photo, caption, link, alt } = curr;
     const { metadata } = photo;
     const photoObject = {
       src: photo.url,
       width: metadata.dimensions.width,
       height: metadata.dimensions.height,
+      captionLink: link.href,
+      caption: caption,
+      alt: alt || null,
     };
     acc.push(photoObject);
     return acc;

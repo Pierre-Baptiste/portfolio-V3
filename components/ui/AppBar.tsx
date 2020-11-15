@@ -14,10 +14,9 @@ const AppBar = () => {
 
   const content = [
     { href: "/", labelId: "home" },
-    { href: "/works", labelId: "works" },
+    { href: "/projects", labelId: "projects" },
     { href: "/about", labelId: "about" },
     { href: "/gallery", labelId: "gallery" },
-    { href: "/contact", labelId: "contact" },
   ];
 
   const menuItems = content
@@ -54,14 +53,10 @@ const AppBar = () => {
 
   const languageItems = ["En", "Fr"]
     .map((language) => (
-      <Link
-        href={router.pathname}
-        locale={language.toLowerCase()}
-        key={language}
-      >
+      <Link href={router.asPath} locale={language.toLowerCase()} key={language}>
         <a
           className={`lg:inlineflex px-1 font-hairline text-xs font-mono ${
-            locale.toLowerCase() === language.toLowerCase()
+            locale && locale.toLowerCase() === language.toLowerCase()
               ? "text-action"
               : "text-lightgray"
           } items-center hover:text-action`}
