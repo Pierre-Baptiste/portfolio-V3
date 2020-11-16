@@ -29,7 +29,29 @@ const query = groq`*[_type == "gallery"] {
   }
 }`;
 
+const shuffleArr = (array) => {
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+};
+
 export default function gallery({ photos }) {
+  // so the order of the pictures is randomized
+  photos = shuffleArr(photos);
   return (
     <>
       <Head>
@@ -39,7 +61,7 @@ export default function gallery({ photos }) {
       <main className="absolute right-0 left-0 top-0 min-h-full ">
         <Layout size="md">
           <Hero page="gallery" />
-          <div className="mt-12">
+          <div className="my-12">
             <LightgalleryProvider
               lightgallerySettings={{
                 download: false,
