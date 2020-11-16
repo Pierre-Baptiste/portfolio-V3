@@ -51,7 +51,7 @@ export default function Home() {
                   defaultMessage="I am"
                 />
                 &nbsp;
-                <Typist startDelay={500}>
+                <Typist startDelay={1000}>
                   <span>
                     Pierre-Baptiste
                     {blueDot}
@@ -89,7 +89,7 @@ export default function Home() {
             </div>
           </div>
           <div className="absolute right-0 top-0 z-0 md:mt-32 xl:mr-40 lg:mr-24 md:-mr-8 sm:mr-0 -mr-32 mt-48">
-            <Image src="/bg.png" width={500} height={930} />
+            <Image src="/bg.png" width={570} height={1000} quality={100} />
           </div>
         </div>
       </main>
