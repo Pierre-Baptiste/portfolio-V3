@@ -94,7 +94,7 @@ export default function Home() {
               width={570}
               height={1000}
               quality={100}
-              priority
+              priority={true}
             />
           </div>
         </div>
