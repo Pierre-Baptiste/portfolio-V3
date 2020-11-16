@@ -4,7 +4,6 @@ import Head from "next/head";
 import { Layout } from "components/core/Layout";
 import { Hero } from "components/ui/Hero";
 import { WorkCard } from "components/ui/WorkCard";
-import { FormattedMessage } from "react-intl";
 import { getClient } from "utils/sanity";
 import { groq } from "next-sanity";
 

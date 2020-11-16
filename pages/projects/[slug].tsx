@@ -5,19 +5,10 @@ import ErrorPage from "next/error";
 import Head from "next/head";
 import { groq } from "next-sanity";
 import { PostTitle } from "components/ui/PostTitle";
-import { PostBody } from "components/ui/PostBody";
 import { Layout } from "components/core/Layout";
 import { DateFormatter } from "components/core/date-formatter";
-import { CoverImage } from "components/ui/CoverImage";
 import Image from "next/image";
-import {
-  getClient,
-  usePreviewSubscription,
-  urlFor,
-  createBlockContent,
-} from "utils/sanity";
-const BlockContent = require("@sanity/block-content-to-react");
-import css from "./work-styles.module.css";
+import { getClient, urlFor, createBlockContent } from "utils/sanity";
 
 const query = groq`*[_type == "project" && slug.current == $slug][0] {
   ...,
