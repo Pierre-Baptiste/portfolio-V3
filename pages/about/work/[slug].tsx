@@ -32,7 +32,6 @@ const Work = ({ workData, preview }: Props) => {
     return <ErrorPage statusCode={404} />;
   }
 
-  console.log("Work -> workData", workData);
   const imageUrl = workData && urlFor(workData.mainImage).url();
   return (
     <>
