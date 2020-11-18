@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Pierre-Baptiste 👨🏼‍💻</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
