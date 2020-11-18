@@ -32,7 +32,7 @@ export default function Home() {
   const image = useRef(null);
 
   useEffect(() => {
-    if (image?.current?.complete) {
+    if (image.current && image.current.complete) {
       setImageLoaded(true);
     }
   }, [image]);
@@ -104,19 +104,19 @@ export default function Home() {
                 imageLoaded ? "opacity-0" : "opacity-100"
               } absolute right-0 transition-opacity duration-1000 ease-in-out`}
             >
-              <img src="/bg.svg" width={570} height={1000} ref={image} />
+              <Image src="/bg.svg" width={570} height={1000} />
             </div>
             <div
               className={`${
                 imageLoaded ? "opacity-100" : "opacity-0"
               } absolute right-0 transition-opacity duration-1000 ease-in-out`}
             >
-              <Image
+              <img
                 src="/bg.png"
+                ref={image}
                 width={570}
                 height={1000}
-                quality={100}
-                priority={true}
+                onLoad={() => setImageLoaded(true)}
               />
             </div>
           </div>
