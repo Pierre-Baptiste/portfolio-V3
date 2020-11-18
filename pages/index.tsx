@@ -35,7 +35,7 @@ export default function Home() {
     if (image?.current?.complete) {
       setImageLoaded(true);
     }
-  }, []);
+  }, [image]);
 
   return (
     <>
