@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import Head from "next/head";
 import Image from "next/image";
@@ -26,6 +26,16 @@ const Social = ({ renderIcon, href }) => {
 export default function Home() {
   const router = useRouter();
   const { locale } = router;
+
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const image = useRef(null);
+
+  useEffect(() => {
+    if (image?.current?.complete) {
+      setImageLoaded(true);
+    }
+  }, []);
 
   return (
     <>
@@ -88,14 +98,27 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="absolute right-0 top-0 z-0 md:mt-32 xl:mr-40 lg:mr-24 md:-mr-8 sm:mr-0 -mr-32 mt-48">
-            <Image
-              src="/bg.png"
-              width={570}
-              height={1000}
-              quality={100}
-              priority={true}
-            />
+          <div className="absolute right-0 top-0 bottom-0 left-0 z-0 md:mt-32 xl:mr-40 lg:mr-24 md:-mr-8 sm:mr-0 -mr-32 mt-48 pointer-events-none">
+            <div
+              className={`${
+                imageLoaded ? "opacity-0" : "opacity-100"
+              } absolute right-0 transition-opacity duration-1000 ease-in-out`}
+            >
+              <img src="/bg.svg" width={570} height={1000} ref={image} />
+            </div>
+            <div
+              className={`${
+                imageLoaded ? "opacity-100" : "opacity-0"
+              } absolute right-0 transition-opacity duration-1000 ease-in-out`}
+            >
+              <Image
+                src="/bg.png"
+                width={570}
+                height={1000}
+                quality={100}
+                priority={true}
+              />
+            </div>
           </div>
         </div>
       </main>
