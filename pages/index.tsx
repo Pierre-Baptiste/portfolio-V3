@@ -117,6 +117,7 @@ export default function Home() {
                 width={570}
                 height={1000}
                 onLoad={() => setImageLoaded(true)}
+                loading="lazy"
               />
             </div>
           </div>
