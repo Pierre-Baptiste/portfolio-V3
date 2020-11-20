@@ -14,7 +14,7 @@ const WorkCard = ({ heading, mainImage, year, blurb, slug }) => {
   const imageUrl = mainImage && urlFor(mainImage).url();
   return (
     <div className="border-2 rounded border-black h-full hover:shadow-lg transition-shadow duration-200 ease-in-out">
-      <Link as={`/works/${slug.current}`} href="/works/[slug]">
+      <Link as={`/projects/${slug.current}`} href="/projects/[slug]">
         <div className="cursor-pointer">
           <div className="h-40 flex items-center overflow-hidden">
             <img src={imageUrl} alt="test" />

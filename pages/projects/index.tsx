@@ -19,7 +19,7 @@ export default function Projects({ projectData }) {
 
       <main className="absolute right-0 left-0 top-0 min-h-full">
         <Layout>
-          <Hero page="works" />
+          <Hero page="projects" />
           <div className="flex flex-wrap max-w-4xl mx-auto justify-between my-4">
             {projectData.length > 0 &&
               projectData.map((work) => {
