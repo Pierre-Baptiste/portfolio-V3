@@ -98,18 +98,18 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="absolute right-0 top-0 bottom-0 left-0 z-0 md:mt-32 xl:mr-40 lg:mr-24 md:-mr-8 sm:mr-0 -mr-32 mt-48 pointer-events-none">
+          <div className="fixed right-0 top-0 bottom-0 left-0 z-0 md:mt-32 xl:mr-40 lg:mr-24 md:-mr-8 sm:mr-0 -mr-32 mt-48 pointer-events-none">
             <div
               className={`${
                 imageLoaded ? "opacity-0" : "opacity-100"
-              } absolute right-0 transition-opacity duration-1000 ease-in-out`}
+              } absolute right-0 top-0 transition-opacity duration-1000 ease-in-out`}
             >
               <Image src="/bg.svg" width={570} height={1000} />
             </div>
             <div
               className={`${
                 imageLoaded ? "opacity-100" : "opacity-0"
-              } absolute right-0 transition-opacity duration-1000 ease-in-out`}
+              } absolute right-0 top-0 transition-opacity duration-1000 ease-in-out`}
             >
               <img
                 src="/bg.png"
