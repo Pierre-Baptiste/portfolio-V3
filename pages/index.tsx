@@ -29,14 +29,6 @@ export default function Home() {
 
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const image = useRef(null);
-
-  useEffect(() => {
-    if (image.current && image.current.complete) {
-      setImageLoaded(true);
-    }
-  }, [image]);
-
   return (
     <>
       <Head>
@@ -111,9 +103,8 @@ export default function Home() {
                 imageLoaded ? "opacity-100" : "opacity-0"
               } absolute right-0 top-0 transition-opacity duration-1000 ease-in-out`}
             >
-              <img
+              <Image
                 src="/bg.png"
-                ref={image}
                 width={570}
                 height={1000}
                 onLoad={() => setImageLoaded(true)}
