@@ -21,13 +21,13 @@ export default function Projects({ projectData }) {
         <Layout>
           <Hero page="projects" />
           <div className="mx-auto max-w-4xl my-4">
-            <div className="flex flex-wrap flex-col sm:flex-row justify-between mx-auto">
+            <div className="flex flex-wrap flex-col sm:flex-row justify-between mx-auto -my-4">
               {projectData.length > 0 &&
                 projectData.map((work) => {
                   return (
                     <div
                       key={work._id}
-                      className="w-full sm:w-1/2 lg:w-72 my-2 px-2 h-80"
+                      className="w-full sm:w-1/2 lg:w-72 my-4 px-2 h-80"
                     >
                       <WorkCard {...work} />
                     </div>

@@ -38,17 +38,22 @@ const Elements = ({
   <div className="flex flex-col mt-4 mb-12">
     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg ">
-          <table className="min-w-full divide-y divide-gray-200">
-            <tbody className="bg-white divide-y divide-gray-200">
-              {data.map((el) => {
+        <div className=" overflow-hidden sm:rounded-lg ">
+          <table className="min-w-full">
+            <tbody className="bg-white ">
+              {data.map((el, index) => {
                 const logoUrl = el.logo && urlFor(el.logo).url();
+                const lastItemIndex = data.length - 1;
                 return (
                   <Link
                     as={`/about/${type}/${el.slug.current}`}
                     href={`/about/${type}/[slug]`}
                   >
-                    <tr className="flex flex-row w-full items-center md:px-4 py-4 px-1 hover:bg-gray-100 cursor-pointer transition-colors duration-100">
+                    <tr
+                      className={`flex flex-row w-full items-center md:px-4 py-4 px-1 hover:bg-gray-100 cursor-pointer transition-colors duration-100 ${
+                        index !== lastItemIndex && "border-b"
+                      }`}
+                    >
                       <td className="flex md:px-4 px-1">
                         <div className="flex-shrink-0 h-12 w-12">
                           <Image
@@ -60,8 +65,8 @@ const Elements = ({
                         </div>
                       </td>
                       <td className="w-full flex md:flex-row md:items-center flex-col">
-                        <td className="lg:w-3/5 md:w-1/2 flex md:flex-col px-4">
-                          <div className="text-sm leading-5 font-medium text-gray-900 flex-wrap flex">
+                        <td className="lg:w-1/2 md:w-1/2 flex md:flex-col pl-4 md:pr-12">
+                          <div className="leading-5 font-medium flex-wrap flex">
                             <span className="hover:underline">
                               {type === "education"
                                 ? el.school[locale || "en"]
@@ -69,37 +74,28 @@ const Elements = ({
                             </span>
                           </div>
                         </td>
-                        <td className="flex justify-between lg:w-2/5 md:w-1/2 px-4">
-                          <div className="flex flex-col ">
-                            <div className="text-sm leading-5 text-gray-900">
+                        <td className="flex justify-between lg:w-1/2 md:w-1/2 px-4">
+                          <div className="flex flex-col">
+                            <div className="text-sm leading-5 text-gray-600">
                               {type === "education"
                                 ? el.diploma && el.diploma[locale || "en"]
                                 : el.role[locale || "en"]}
                             </div>
-                            <div className="text-xs leading-5 text-gray-500 whitespace-no-wrap">
+                            <div className="text-sm leading-5 text-gray-600 whitespace-no-wrap">
                               <DateFormatter
                                 dateString={el.beginning}
-                                format="MMMM yyyy"
+                                format="MMM yyyy"
                                 locale={locale}
                               />{" "}
                               -{" "}
                               <DateFormatter
                                 dateString={el.end}
-                                format="MMMM yyyy"
+                                format="MMM yyyy"
                                 locale={locale}
                               />
                             </div>
                           </div>
                         </td>
-                      </td>
-                      <td className="flex justify-end md:px-4 px-1">
-                        <span
-                          className={`p-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 ${
-                            el.isCurrent ? "" : "invisible"
-                          }`}
-                        >
-                          <Sun />
-                        </span>
                       </td>
                     </tr>
                   </Link>
