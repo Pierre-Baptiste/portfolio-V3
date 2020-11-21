@@ -42,7 +42,7 @@ export const urlFor = (source) => createImageUrlBuilder(config).image(source);
 export const usePreviewSubscription = createPreviewSubscriptionHook(config);
 
 const BlockRenderer = (props) => {
-  const { style = "p" } = props.node;
+  const { style = "normal" } = props.node;
 
   if (/^h\d/.test(style)) {
     const level = style.replace(/[^\d]/g, "");
@@ -70,13 +70,7 @@ const BlockRenderer = (props) => {
   }
 
   if (style === "normal") {
-    return React.createElement(
-      style,
-      {
-        className: `my-4`,
-      },
-      props.children
-    );
+    return React.createElement(style, {}, props.children);
   }
 
   // Fall back to default handling
@@ -112,7 +106,11 @@ export const createBlockContent = (blocks) => {
           ),
           block: BlockRenderer,
         },
-        list: (props) => <ul className="list-disc pl-12">{props.children}</ul>,
+        list: (props) => {
+          return (
+            <ul className="list-disc list-inside pl-4">{props.children}</ul>
+          );
+        },
         marks: { highlight },
       }}
     />
