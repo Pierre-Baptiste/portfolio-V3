@@ -12,8 +12,6 @@ import { groq } from "next-sanity";
 import { getClient, urlFor } from "utils/sanity";
 import { useRouter } from "next/router";
 
-import { Sun } from "react-feather";
-
 const query = groq`*[_type in ["work", "education", "skill"]]`;
 
 const Title = ({ titleId }) => (
@@ -61,6 +59,7 @@ const Elements = ({
                             src={logoUrl}
                             width={100}
                             height={100}
+                            alt={el.logo.alt}
                           />
                         </div>
                       </td>
@@ -111,12 +110,12 @@ const Elements = ({
 
 const LogoElements = ({ skills }) => {
   return (
-    <div className="flex justify-center flex-wrap mx-12 mt-12">
+    <div className="flex justify-center flex-wrap mx-12 my-12">
       {skills.map((skill) => {
         const logoUrl = skill.logo && urlFor(skill.logo).url();
         return (
-          <div className="mx-2 transition-transform transform hover:scale-110 duration-150">
-            <Image src={logoUrl} width={45} height={45} />
+          <div className="m-2 transition-transform flex items-center transform hover:scale-110 duration-150">
+            <img src={logoUrl} className="h-12" alt={skill.logo.alt} />
           </div>
         );
       })}
@@ -157,7 +156,9 @@ export default function About({ aboutData }) {
           <Title titleId="education" />
           <Elements data={data.education} locale={locale} type="education" />
           <Title titleId="skills" />
-          <LogoElements skills={data.skills} />
+          <Layout size="xs">
+            <LogoElements skills={data.skills} />
+          </Layout>
         </Layout>
       </main>
     </>
