@@ -12,6 +12,8 @@ import { groq } from "next-sanity";
 import { getClient, urlFor } from "utils/sanity";
 import { useRouter } from "next/router";
 
+import { Sun } from "react-feather";
+
 const query = groq`*[_type in ["work", "education", "skill"]]`;
 
 const Title = ({ titleId }) => (
@@ -92,15 +94,11 @@ const Elements = ({
                       </td>
                       <td className="flex justify-end md:px-4 px-1">
                         <span
-                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 ${
+                          className={`p-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 ${
                             el.isCurrent ? "" : "invisible"
                           }`}
                         >
-                          <FormattedMessage
-                            id={`about.current`}
-                            description={`current about element`}
-                            defaultMessage={`Active`}
-                          />
+                          <Sun />
                         </span>
                       </td>
                     </tr>

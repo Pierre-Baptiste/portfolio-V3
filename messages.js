@@ -26,7 +26,6 @@ export const messages = {
     "about.experiences": "Work Experience",
     "about.education": "Education",
     "about.skills": "Skills",
-    "about.current": "Active",
   },
   fr: {
     "not_found.title": "Oups, voilà qui n'était pas prévu !",
@@ -54,6 +53,5 @@ export const messages = {
     "about.experiences": "Expériences Professionnelles",
     "about.education": "Éducation",
     "about.skills": "Compétences",
-    "about.current": "Actuel",
   },
 };

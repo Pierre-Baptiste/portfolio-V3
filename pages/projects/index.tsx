@@ -20,15 +20,20 @@ export default function Projects({ projectData }) {
       <main className="absolute right-0 left-0 top-0 min-h-full">
         <Layout>
           <Hero page="projects" />
-          <div className="flex flex-wrap max-w-4xl mx-auto justify-between my-4">
-            {projectData.length > 0 &&
-              projectData.map((work) => {
-                return (
-                  <div key={work._id} className="w-72 my-2 px-2 h-80">
-                    <WorkCard {...work} />
-                  </div>
-                );
-              })}
+          <div className="mx-auto max-w-4xl my-4">
+            <div className="flex flex-wrap flex-col sm:flex-row justify-between mx-auto">
+              {projectData.length > 0 &&
+                projectData.map((work) => {
+                  return (
+                    <div
+                      key={work._id}
+                      className="w-full sm:w-1/2 lg:w-72 my-2 px-2 h-80"
+                    >
+                      <WorkCard {...work} />
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </Layout>
       </main>

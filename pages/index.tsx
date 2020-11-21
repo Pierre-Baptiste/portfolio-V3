@@ -90,7 +90,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="fixed right-0 top-0 bottom-0 left-0 z-0 md:mt-32 xl:mr-40 lg:mr-24 md:-mr-8 sm:mr-0 -mr-32 mt-48 pointer-events-none">
+          <div className="fixed right-0 top-0 bottom-0 left-0 z-0 md:mt-32 xl:mr-40 lg:mr-24 md:-mr-8 sm:mr-0 ml-12 sm:ml-0 -mr-32 mt-48 pointer-events-none">
             <div
               className={`${
                 imageLoaded ? "opacity-0" : "opacity-100"
