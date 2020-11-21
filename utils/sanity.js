@@ -108,7 +108,9 @@ export const createBlockContent = (blocks) => {
         },
         list: (props) => {
           return (
-            <ul className="list-disc list-inside pl-4">{props.children}</ul>
+            <ul style={{ listStyle: "inside !important", paddingLeft: "2rem" }}>
+              {props.children}
+            </ul>
           );
         },
         marks: { highlight },
