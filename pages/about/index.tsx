@@ -46,6 +46,7 @@ const Elements = ({
                   <Link
                     as={`/about/${type}/${el.slug.current}`}
                     href={`/about/${type}/[slug]`}
+                    key={el.tile}
                   >
                     <tr
                       className={`flex flex-row w-full items-center md:px-4 py-4 px-1 hover:bg-gray-100 cursor-pointer transition-colors duration-100 ${
