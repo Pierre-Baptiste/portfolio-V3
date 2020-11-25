@@ -24,15 +24,14 @@ type Props = {
   preview?: boolean;
 };
 
-const Work = ({ workData, preview }: Props) => {
+const Work = ({ workData }: Props) => {
   const router = useRouter();
-  const { locale } = router;
+  const { locale = "fr" } = router;
 
   if (!router.isFallback && !workData.slug.current) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const imageUrl = workData && urlFor(workData.mainImage).url();
   return (
     <>
       {router.isFallback ? (
@@ -53,10 +52,11 @@ const Work = ({ workData, preview }: Props) => {
                 src={workData.mainImage.url}
                 width={workData.mainImage.metadata.dimensions.width}
                 height={workData.mainImage.metadata.dimensions.height}
+                quality={100}
               />
             </div>
             <Layout size="xs">
-              {createBlockContent(workData.body[locale])}
+              {workData.body && createBlockContent(workData.body[locale])}
               <div className="text-lg font-bold text-action text-center my-12">
                 # MERCI
               </div>
@@ -72,11 +72,11 @@ export default Work;
 
 export async function getStaticProps({ params, preview = false }) {
   const workData = await getClient(preview).fetch(query, {
-    slug: params.slug,
+    slug: params.slug
   });
 
   return {
-    props: { preview, workData },
+    props: { preview, workData }
   };
 }
 
@@ -86,7 +86,7 @@ export async function getStaticPaths() {
   );
 
   return {
-    paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: true,
+    paths: paths.map(slug => ({ params: { slug } })),
+    fallback: true
   };
 }

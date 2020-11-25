@@ -27,7 +27,7 @@ const Title = ({ titleId }) => (
 const Elements = ({
   data,
   locale,
-  type,
+  type
 }: {
   data: any;
   locale: string;
@@ -49,9 +49,8 @@ const Elements = ({
                     key={el.tile}
                   >
                     <tr
-                      className={`flex flex-row w-full items-center md:px-4 py-4 px-1 hover:bg-gray-100 cursor-pointer transition-colors duration-100 ${
-                        index !== lastItemIndex && "border-b"
-                      }`}
+                      className={`flex flex-row w-full items-center md:px-4 py-4 px-1 hover:bg-gray-100 cursor-pointer transition-colors duration-100 ${index !==
+                        lastItemIndex && "border-b"}`}
                     >
                       <td className="flex md:px-4 px-1">
                         <div className="flex-shrink-0 h-12 w-12">
@@ -82,17 +81,21 @@ const Elements = ({
                                 : el.role[locale || "en"]}
                             </div>
                             <div className="text-sm leading-5 text-gray-600 whitespace-no-wrap">
-                              <DateFormatter
-                                dateString={el.beginning}
-                                format="MMM yyyy"
-                                locale={locale}
-                              />{" "}
-                              -{" "}
-                              <DateFormatter
-                                dateString={el.end}
-                                format="MMM yyyy"
-                                locale={locale}
-                              />
+                              {el.beginning && (
+                                <DateFormatter
+                                  dateString={el.beginning}
+                                  format="MMM yyyy"
+                                  locale={locale}
+                                />
+                              )}
+                              {el.beginning && el.end && " - "}
+                              {el.end && (
+                                <DateFormatter
+                                  dateString={el.end}
+                                  format="MMM yyyy"
+                                  locale={locale}
+                                />
+                              )}
                             </div>
                           </div>
                         </td>
@@ -112,7 +115,7 @@ const Elements = ({
 const LogoElements = ({ skills }) => {
   return (
     <div className="flex justify-center flex-wrap mx-12 my-12">
-      {skills.map((skill) => {
+      {skills.map(skill => {
         const logoUrl = skill.logo && urlFor(skill.logo).url();
         return (
           <div className="m-2 transition-transform flex items-center transform hover:scale-110 duration-150">
@@ -170,6 +173,6 @@ export async function getStaticProps(context) {
   const aboutData = await getClient().fetch(query);
 
   return {
-    props: { aboutData },
+    props: { aboutData }
   };
 }
