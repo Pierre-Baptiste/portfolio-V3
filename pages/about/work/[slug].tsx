@@ -35,7 +35,11 @@ const Work = ({ workData }: Props) => {
   return (
     <>
       {router.isFallback ? (
-        <PostTitle>Loading…</PostTitle>
+        <Layout size="md">
+          <div className="my-12">
+            <PostTitle>Loading…</PostTitle>
+          </div>
+        </Layout>
       ) : (
         <>
           <article className="my-32">

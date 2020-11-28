@@ -36,7 +36,11 @@ const Education = ({ educationData, preview }: Props) => {
   return (
     <>
       {router.isFallback ? (
-        <PostTitle>Loading…</PostTitle>
+        <Layout size="md">
+          <div className="my-12">
+            <PostTitle>Loading…</PostTitle>
+          </div>
+        </Layout>
       ) : (
         <>
           <article className="my-32">
@@ -72,11 +76,11 @@ export default Education;
 
 export async function getStaticProps({ params, preview = false }) {
   const educationData = await getClient(preview).fetch(query, {
-    slug: params.slug,
+    slug: params.slug
   });
 
   return {
-    props: { preview, educationData },
+    props: { preview, educationData }
   };
 }
 
@@ -86,7 +90,7 @@ export async function getStaticPaths() {
   );
 
   return {
-    paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: true,
+    paths: paths.map(slug => ({ params: { slug } })),
+    fallback: true
   };
 }
